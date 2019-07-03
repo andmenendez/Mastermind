@@ -1,0 +1,52 @@
+<div style="margin-top: 25px; width: 100vw; display: flex; flex-direction: column; align-items: center;">
+
+	<div style="display: grid; 
+	grid-template-columns: 40px 40px 40px 40px 10px 40px 40px 50px; 
+	grid-row-gap: 0px; grid-column-gap: 25px">
+		
+		<div class=" heading"> A </div> 
+		<div class=" heading"> B </div> 
+		<div class=" heading"> C </div> 
+		<div class=" heading"> D </div> 
+		<div class=" heading" style="border: 0px"> </div> 
+		<div class=" heading"> B </div> 
+		<div class=" heading"> W</div> 
+		<div class=" heading" style="border: 0px"> </div> 
+
+		<!-- ROW 1 -->
+		<% 12.times do |y| %>
+			<% 6.times do |x| %>
+          <% if x <= 3 %>
+      		  <form action='/gameboard/<%=y%>-<%=x%>' method="POST">
+              <input type="hidden" name="_method" value="PUT"/>
+              <input type="submit" name="<%=y%>-<%=x%>" value = "" 
+              class='game_block block_<%=data[0][y][x].to_s%>'>
+            </form>
+
+          <% if x == 3 %>
+            <div class="game_block " style="border: 0px"> </div>
+          <% end %>
+        <% else %>
+
+            <input type="hidden" name="_method" value="PUT"/>
+            <input type="button" name="<%=y%>-<%=x%>" value = "<%=data[0][y][x].to_s%>" 
+              class='game_block block_resp<%=x%>'>
+            </form>
+
+        <% end %>
+
+      <% end %>
+		<form action="/gameboard/verify/<%=y%>" method="post"> 
+        	<input type="hidden" name="_method" value="PUT"/>
+		  	<input type="submit" name="submit_<%=y%>" value="submit" class='game_submit'>
+		 </form>
+		<% end %>
+	</div>
+	<div style="height: 100px; margin-top: 25px;">
+		<form method="get" action="/new_game_s">
+			<input type="submit" id="return" value="return">
+		</form>
+	</div>
+</div>
+
+

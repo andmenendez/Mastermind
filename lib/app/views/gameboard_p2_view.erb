@@ -1,0 +1,33 @@
+<div style="margin-top: 25px; width: 100vw; display: flex; flex-direction: column; align-items: center;">
+
+	<div style="display: grid; 
+	grid-template-columns: 40px 40px 40px 40px 50px; 
+	grid-row-gap: 0px; grid-column-gap: 25px">
+		
+		<div class=" heading"> A </div> 
+		<div class=" heading"> B </div> 
+		<div class=" heading"> C </div> 
+		<div class=" heading"> D </div> 
+		<div class=" heading" style="border: 0px"> </div> 
+
+		<!-- ROW 1 -->
+		<% 4.times do |x| %>
+  		<form action='/gameboard/p2/<%=x%>' method="POST">
+        	<input type="hidden" name="_method" value="PUT"/>
+         	<input type="submit" name="" value = "" 
+          class='game_block block_<%=data[0][x].to_s%>'>
+        </form>
+  	<% end %>
+
+		<form method="post" action="/gameboard/p2/submit">
+		  <input type="submit" value="submit" class='game_submit'>
+		</form>
+	</div>
+
+  <div style="height: 100px; margin-top: 25px;">
+    <form method="get" action="/new_game_s">
+      <input type="submit" id="return" value="return">
+    </form>
+  </div>
+
+</div>
